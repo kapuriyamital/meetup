@@ -106,6 +106,9 @@
             //dataType: 'json',
             //data: person,
             crossDomain: true,
+            headers: {
+              'Access-Control-Allow-Origin': true,
+            },
             success: function (data, textStatus, xhr) {
                 console.log(data);
             },
