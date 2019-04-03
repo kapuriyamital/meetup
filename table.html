@@ -103,7 +103,7 @@
         $.ajax({
             url: 'https://api.meetup.com/find/groups?access_token='+localStorage.getItem("access_token"),
             method: 'POST',
-            dataType: 'jsonp',
+            dataType: 'json',
             //data: person,
             crossDomain: true,
             headers: {
@@ -111,6 +111,7 @@
               'Access-Control-Allow-Origin': '*',
             },
             success: function (data, textStatus, xhr) {
+                console.log("success");
                 console.log(data);
             },
             error: function (xhr, textStatus, errorThrown) {
@@ -120,24 +121,9 @@
 
         var dataArr = [
             {
-                "firstName": "asdsa",
-                "lastName": "SADASa",
-                "email": "sdadas@sdas.com"
-            },
-            {
-                "firstName": "sajhdjkasbdjab",
-                "lastName": "lksajdklasjd",
-                "email": "sdadaksjdhjsakdhjhas@sdas.com"
-            },
-            {
-                "firstName": "asdsa",
-                "lastName": "SADASa",
-                "email": "sdadas@sdas.com"
-            },
-            {
-                "firstName": "asdsa",
-                "lastName": "SADASa",
-                "email": "sdadas@sdas.com"
+                "name": "asdsa",
+                "description": "SADASa",
+                "city": "sdadas@sdas.com"
             }
         ];
 
@@ -145,9 +131,9 @@
         for(var key in dataArr) {
 
                 tableRows += '<tr>'+
-                    '<td>'+dataArr[key]['firstName']+'</td>'+
-                    '<td>'+dataArr[key]['lastName']+'</td>'+
-                    '<td>'+dataArr[key]['email']+'</td>'+
+                    '<td>'+dataArr[key]['name']+'</td>'+
+                    '<td>'+dataArr[key]['description']+'</td>'+
+                    '<td>'+dataArr[key]['city']+'</td>'+
                     '</tr>';
         };
 
