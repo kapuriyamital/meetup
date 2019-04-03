@@ -103,7 +103,7 @@
         $.ajax({
             url: 'https://api.meetup.com/find/groups?access_token='+localStorage.getItem("access_token"),
             method: 'POST',
-            //dataType: 'json',
+            dataType: 'jsonp',
             //data: person,
             crossDomain: true,
             headers: {
