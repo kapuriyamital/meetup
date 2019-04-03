@@ -47,7 +47,7 @@ window.mu.Api = (function(win, $) {
 
         // location to redirect member after when Meetup gets their
         // authorization
-        , redirectUri =  "https://www.google.com" //opts.redirectUri || window.location.href
+        , redirectUri =  "https://sheltered-anchorage-41677.herokuapp.com/table.html" //opts.redirectUri || window.location.href
 
         // function invoked when meetup user denies authorization
         , onAuthDenial = opts.onAuthDenial || function(err) {
