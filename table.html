@@ -35,47 +35,8 @@
                     <th>Email<span><i class="fas fa-sort" onclick="sortTable(2)"></i></span></th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <td>Tiger Nixon</td>
-                    <td>System Architect</td>
-                    <td>john@example.com</td>
-                </tr>
-                <tr>
-                    <td>Garrett Winters</td>
-                    <td>Accountant</td>
-                    <td>mary@example.com</td>
-                </tr>
-                <tr>
-                    <td>Ashton Cox</td>
-                    <td>Junior Technical Author</td>
-                    <td>july@example.com</td>
-                </tr>
-                <tr>
-                    <td>Haley Kennedy</td>
-                    <td>Senior Marketing Designer</td>
-                    <td>apple@example.com</td>
-                </tr>
-                <tr>
-                    <td>Haley Kennedy</td>
-                    <td>Senior Marketing Designer</td>
-                    <td>apple@example.com</td>
-                </tr>
-                <tr>
-                    <td>Tatyana Fitzpatrick</td>
-                    <td>Regional Director</td>
-                    <td>vipul@example.com</td>
-                </tr>
-                <tr>
-                    <td>Doris Wilder</td>
-                    <td>Sales Assistant</td>
-                    <td>krishna@example.com</td>
-                </tr>
-                <tr>
-                    <td>Angelica Ramos</td>
-                    <td>Chief Executive Officer (CEO)</td>
-                    <td>pinal@example.com</td>
-                </tr>
+                <tbody id="tbody">
+
                 </tbody>
             </table>
         </div>
@@ -129,8 +90,64 @@
     }
 
     $(document).ready(function(){
-       var url = window.location.href;
-        alert(url);
+       //var url = window.location.href;
+        var url = "https://sheltered-anchorage-41677.herokuapp.com/table.html#access_token=85977cecd6d7239e142282e8f630286f&token_type=bearer&expires_in=72576000&scope=ageless";
+        var url_params = url.split("#");
+        var url_params1 =  url_params[1].split("&");
+        var access_token_param = url_params1[0].split("=");
+        var access_token  = access_token_param[1];
+
+        localStorage.setItem("access_token", access_token);
+        //alert(localStorage.getItem("access_token"));
+
+        $.ajax({
+            url: 'https://api.meetup.com/find/groups?access_token='+localStorage.getItem("access_token"),
+            type: 'GET',
+            //dataType: 'json',
+            //data: person,
+            success: function (data, textStatus, xhr) {
+                console.log(data);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.log('Error in Operation');
+            }
+        });
+
+        var dataArr = [
+            {
+                "firstName": "asdsa",
+                "lastName": "SADASa",
+                "email": "sdadas@sdas.com"
+            },
+            {
+                "firstName": "sajhdjkasbdjab",
+                "lastName": "lksajdklasjd",
+                "email": "sdadaksjdhjsakdhjhas@sdas.com"
+            },
+            {
+                "firstName": "asdsa",
+                "lastName": "SADASa",
+                "email": "sdadas@sdas.com"
+            },
+            {
+                "firstName": "asdsa",
+                "lastName": "SADASa",
+                "email": "sdadas@sdas.com"
+            }
+        ];
+
+        var tableRows = '';
+        for(var key in dataArr) {
+
+                tableRows += '<tr>'+
+                    '<td>'+dataArr[key]['firstName']+'</td>'+
+                    '<td>'+dataArr[key]['lastName']+'</td>'+
+                    '<td>'+dataArr[key]['email']+'</td>'+
+                    '</tr>';
+        };
+
+
+        $("#tbody").html(tableRows);
     });
 </script>
 </body>
