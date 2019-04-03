@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yfret_tech_signin_page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+</head>
+<body>
+    <div class="container-fluid login">
+        <div class="row">
+            <div class="col-lg-12 col-sm-12">
+                <div class="form ">
+                    <div class="col-lg-12">
+                        <div class="user">
+                            <div class="userimg">
+                                <img src="https://img.icons8.com/color/100/000000/administrator-male.png">
+                            </div>
+                        </div>
+                        <h3>USER LOGIN</h3>
+                    </div>
+                    <form class="login-form" action="javascript:void(0)">
+                        <label for="email"><b>Email</b></label>
+                        <input type="text" placeholder="Email" name="email" required/>
+
+                        <label for="psw"><b>Password</b></label>
+                        <input type="password" placeholder="Enter Password" name="psw" required>
+
+                        <label>
+                            <input type="checkbox" checked="checked" name="remember"> Remember me
+                        </label>
+                        <button type="submit" id="connect">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script src="js/mu.api.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        var MEETUP_API_EVENTS_URL = "https://api.meetup.com/2/events?access_token=";
+        var MEETUP_CLIENT_ID = "aqck8j87v4e4o5q9hns78repe6";
+        // initialize api
+        api = mu.Api({
+            clientId: MEETUP_CLIENT_ID
+            , onMember: function(member, token) {
+                $("#connect").hide(); $("#disconnect").show();
+                $.getJSON(MEETUP_API_EVENTS_URL + token +
+                        "&member_id=self&fields=short_link&page=10&callback=?", function(evts) {
+                    var el = $("#events"), buff = [];
+                    $.map(evts.results, function(e) {
+                        buff.push('<li>' + e.name.link(e.short_link) + '</li>');
+                    });
+                    el.append(buff.join(''));
+                });
+                $("#member").html(
+                        "Hey " + member.name.link(member.link) + " | <a href='#' id='disconnect'>Logout</a>");
+            }
+        });
+
+        (function($){
+            $(function() {
+                $("#connect").on('click', function(e) {
+                    e.preventDefault();
+                    api.login();
+                    return false;
+                });
+                $("#disconnect").on('click', function(e) {
+                    e.preventDefault();
+                    api.logout(function(){
+                        $("#disconnect").hide(); $("#connect").show();
+                        window.location.reload();
+                    });
+                    return false;
+                });
+            });
+        })(jQuery);
+    </script>
+
+</body>
+</html>
