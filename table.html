@@ -110,9 +110,22 @@
               'Content-Type': 'application/json',
               'Access-Control-Allow-Origin': '*',
             },
-            success: function (data, textStatus, xhr) {
+            success: function (response, textStatus, xhr) {
                 console.log("success");
-                console.log(data);
+                console.log(response.data);
+                var dataArr = response.data;
+                var tableRows = '';
+                for(var key in dataArr) {
+
+                    tableRows += '<tr>'+
+                            '<td>'+dataArr[key]['name']+'</td>'+
+                            '<td>'+dataArr[key]['description']+'</td>'+
+                            '<td>'+dataArr[key]['city']+'</td>'+
+                            '</tr>';
+                };
+
+
+                $("#tbody").html(tableRows);
             },
             error: function (xhr, textStatus, errorThrown) {
                 console.log('Error in Operation');
@@ -127,18 +140,6 @@
             }
         ];
 
-        var tableRows = '';
-        for(var key in dataArr) {
-
-                tableRows += '<tr>'+
-                    '<td>'+dataArr[key]['name']+'</td>'+
-                    '<td>'+dataArr[key]['description']+'</td>'+
-                    '<td>'+dataArr[key]['city']+'</td>'+
-                    '</tr>';
-        };
-
-
-        $("#tbody").html(tableRows);
     });
 </script>
 </body>
