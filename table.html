@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>table</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+</head>
+<body>
+    <header class="main">
+        <div class="logo">
+            <img src="image/logo.png" alt="" class="img-responsive">
+        </div>
+        <form class="example" action="/action_page.php">
+            <input type="text" id="myInput" onkeyup="searchFnc()" placeholder="Search.." name="search">
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+        <ul class="menu_disable">
+            <li><a href="#"><i class="fas fa-user-circle"></i> Login</a> </li>
+        </ul>
+    </header>
+    <div class="container-fluid table_title">
+        <h2>GROUP LISTING TABLE</h2>
+    </div>
+    <div class="container-fluid">
+        <div class="table-responsive-md">
+            <table class="table table-bordered" id="myTable" data-page-length='2'>
+                <thead>
+                <tr>
+                    <th>Firstname<span><i class="fas fa-sort" onclick="sortTable(0)"></i></span></th>
+                    <th>Lastname<span><i class="fas fa-sort" onclick="sortTable(1)"></i></span></th>
+                    <th>Email<span><i class="fas fa-sort" onclick="sortTable(2)"></i></span></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Tiger Nixon</td>
+                    <td>System Architect</td>
+                    <td>john@example.com</td>
+                </tr>
+                <tr>
+                    <td>Garrett Winters</td>
+                    <td>Accountant</td>
+                    <td>mary@example.com</td>
+                </tr>
+                <tr>
+                    <td>Ashton Cox</td>
+                    <td>Junior Technical Author</td>
+                    <td>july@example.com</td>
+                </tr>
+                <tr>
+                    <td>Haley Kennedy</td>
+                    <td>Senior Marketing Designer</td>
+                    <td>apple@example.com</td>
+                </tr>
+                <tr>
+                    <td>Haley Kennedy</td>
+                    <td>Senior Marketing Designer</td>
+                    <td>apple@example.com</td>
+                </tr>
+                <tr>
+                    <td>Tatyana Fitzpatrick</td>
+                    <td>Regional Director</td>
+                    <td>vipul@example.com</td>
+                </tr>
+                <tr>
+                    <td>Doris Wilder</td>
+                    <td>Sales Assistant</td>
+                    <td>krishna@example.com</td>
+                </tr>
+                <tr>
+                    <td>Angelica Ramos</td>
+                    <td>Chief Executive Officer (CEO)</td>
+                    <td>pinal@example.com</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script>
+    function sortTable(col) {
+        var table, rows, switching, i, x, y, shouldSwitch;
+        table = document.getElementById("myTable");
+        switching = true;
+        while (switching) {                                 //Make a loop that will continue until no switching has been done://
+            switching = false;                               //start by saying: no switching is done:
+            rows = table.rows;
+            for (i = 1; i < (rows.length - 1); i++) {       //Loop through all table rows (except the  first, which contains table headers):*/
+                shouldSwitch = false;                        //start by saying there should be no switching:
+                x = rows[i].getElementsByTagName("TD")[col];   //Get the two elements you want to compare,one from current row and one from the next:*/
+                y = rows[i + 1].getElementsByTagName("TD")[col];
+                if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) { //check if the two rows should switch place:
+                    shouldSwitch = true;                        //if so, mark as a switch and break the loop:
+                    break;
+                }
+            }
+            if (shouldSwitch) {
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]); //If a switch has been marked, make the switch and mark that a switch has been done://
+                switching = true;
+            }
+        }
+    }
+    function searchFnc() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+</body>
+</html>
