@@ -32,12 +32,10 @@
                 <tr>
                     <th>Firstname<span><i class="fas fa-sort" onclick="sortTable(0)"></i></span></th>
                     <th>Lastname<span><i class="fas fa-sort" onclick="sortTable(1)"></i></span></th>
-                    <th>Email<span><i class="fas fa-sort" onclick="sortTable(2)"></i></span></th>
+                    <th>Photoes<span><i class="fas fa-sort" onclick="sortTable(2)"></i></span></th>
                 </tr>
                 </thead>
-                <tbody id="tbody">
-
-                </tbody>
+                <tbody id="tbody"></tbody>
             </table>
         </div>
     </div>
@@ -120,7 +118,7 @@
                     tableRows += '<tr>'+
                             '<td>'+dataArr[key]['name']+'</td>'+
                             '<td>'+dataArr[key]['description']+'</td>'+
-                            '<td>'+dataArr[key]['city']+'</td>'+
+                            '<td>'+dataArr[key]['key_photo']['thumb_link']+'</td>'+
                             '</tr>';
                 };
 
