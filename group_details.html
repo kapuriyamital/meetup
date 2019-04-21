@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Description_page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+</head>
+<body>
+    <header class="main">
+        <div class="logo">
+            <img src="image/logo.png" alt="" class="img-responsive">
+        </div>
+        <form class="example" action="/action_page.php">
+            <input type="text" placeholder="Search.." name="search2">
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+        <ul class="menu_disable">
+            <li><a href="#"><i class="fas fa-user-circle"></i> Login</a> </li>
+        </ul>
+    </header>
+
+    <!------ Include the above in your HEAD tag ---------->
+
+    <div class="container ">
+        <div class="row">
+            <div class="col-lg-6 col-md-7 col-sm-7 item-photo">
+                <span class="loader"></span>
+                <img src=" " id="profile_photo" />
+            </div>
+            <div class="col-lg-6 col-md-5 col-sm-5 item_des">
+                <!-- Datos del vendedor y titulo del producto -->
+                <h1 id="group-name"></h1>
+                <ul class="list-unstyled location">
+                    <li><a href=""><i class="fas fa-map-marker-alt"></i><span id="localized_location"></span></a></li>
+                    <li><a href=""><i class="fas fa-user-friends"></i><span id="members"></span> Member</a></li>
+                    <li><a href=""><i class="fas fa-user"></i><span class="organizer-name"></span></a></li>
+                </ul>
+                <ul class="list-unstyled list-inline icon">
+                    <span>Share : </span>
+                    <li class="list-inline-item fb_icon"><a href=""><i class="fab fa-facebook-f"></i></a></li>
+                    <li class="list-inline-item tw_icon"><a href=""><i class="fab fa-twitter"></i></a></li>
+                    <li class="list-inline-item google_icon"><a href=""><i class="fab fa-google"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid detail" id="offset_scroll">
+        <div class="row" id="navbar">
+            <div class="col-lg-7 col-md-7 col-sm-8" id="navbar_left">
+                <ul class="list-unstyled list-inline nav nav-tabs">
+                    <li class="list-inline-item"><a data-toggle="tab" class="active show" href="#about">About</a></li>
+                    <li class="list-inline-item" onclick="groupEvent()"><a data-toggle="tab" href="#event_tab">Event</a></li>
+                    <li class="list-inline-item" onclick ="memberAlbum()"><a data-toggle="tab" href="#photo">Photo</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-5 col-md-5 col-sm-4" id="navbar_right">
+                <ul class="list-unstyled list-inline">
+                    <li class="list-inline-item"><a href="#" class="btn btn-danger btn-sm" role="button">Join a Group</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row content">
+            <div class="col-lg-7 col-md-7 col-sm-12 l_side">
+                <div class="tab-content">
+                    <div id="about" class="tab-pane fade in active show">
+                        <div class="card box">
+                            <div class="card-header title">
+                                <h5>What we're about</h5>
+                            </div>
+                            <div class="card-body">
+                                <span id="group_description"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="event_tab" class="tab-pane fade events_data">
+                        <span class="loader"></span>
+                    </div>
+                    <div id="photo" class="tab-pane fade">
+                        <div class="row">
+                            <div class="col-lg-12"  >
+                                <div class="card box">
+                                    <div class="card-header title">
+                                        <h5>Photo</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <ul class="text-center list-unstyled" id="member_album"> <span class="loader"></span></ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-5 col-sm-12 r_side">
+                <!------ Include the above in your HEAD tag ---------->
+                <h3 class="text-center head">Team Design Section</h3>
+                <div class="container">
+                    <div class="row righisidebar">
+                        <div class="col-lg-12 organizer">
+                            <h5>Organizer</h5>
+                            <ul class="list-unstyled list-inline">
+                                <li class="list-inline-item">
+                                    <div class="our-team-main ">
+                                        <a class="team-front">
+                                            <img src="https://img.icons8.com/color/100/000000/administrator-male.png" id="organizer_photo">
+                                        </a>
+                                    </div>
+                                </li>
+                                <li class="list-inline-item">
+                                    <span><a class="organizer-name"></a></span>
+                                    <p><a href="javascript void(0)">Message</a></p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 member_profile">
+                            <div class=" m_title">
+                                <h5>Member</h5>
+                            </div>
+                            <ul class="list-unstyled " id="members_photo"> <span class="loader"></span></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- jQuery library -->
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js" type="application/javascript"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" type="application/javascript"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="application/javascript"></script>
+<!--
+    &lt;!&ndash; Popper JS &ndash;&gt;
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" type="application/javascript"></script>
+-->
+
+    <script type="application/javascript">
+        var eventCall = false;
+        var albumCall = false;
+
+        window.onscroll = function() {
+            scrollStickyBar()
+        };
+        var navbar,
+            offset_scroll,
+            sticky ;
+        function scrollStickyBar() {
+             navbar = document.getElementById("navbar");
+             offset_scroll = document.getElementById("offset_scroll");
+             sticky = offset_scroll.offsetTop;
+            if(window.pageYOffset >= sticky){
+                navbar.classList.add("sticky")
+            } else {
+                navbar.classList.remove("sticky");
+            }
+        }
+
+        $(document).ready(function(){
+            //var url = window.location.href;
+            var url = window.location.href;
+            console.log(url);
+            var url_params = url.split("?");
+            console.log(url_params);
+            var txt = url_params[1];
+            console.log(txt);
+
+            $.ajax({
+                url: 'https://api.meetup.com/find/groups?text='+txt+'&access_token='+localStorage.getItem("access_token"),
+                method: 'POST',
+                dataType: 'jsonp',
+                crossDomain: true,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                },
+                success: function (response, textStatus, xhr) {
+                    var data = response.data[0];
+                    //console.log("success");
+                    //console.log(data);
+
+                    var photo_src = 'image/Group-icon.png';
+                    if(typeof data['key_photo'] != 'undefined') {
+                        photo_src = data['key_photo']['photo_link'];
+                    }
+                    $('.item-photo .loader').css('display','none');
+                    $('#profile_photo').attr('src', photo_src);
+
+                    $('#group-name').html(data['name']);
+                    $('#localized_location').html(data['localized_location']);
+                    $('#members').html(data['members']);
+                    $('.organizer-name').html(data['organizer']['name']);
+                    $('#group_description').html(data['description']);
+                    $('#organizer_photo').attr('src', data['organizer']['photo']['thumb_link']);
+
+                    localStorage.setItem("group_id", data['id']);
+                    memberPhoto(data['id']); // for memberlist
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log('Something went wrong....');
+                }
+            });
+            function memberPhoto(group_id){
+                $.ajax({
+                    url: 'https://api.meetup.com/2/members?text='+txt+'&page=20&group_id='+ group_id +'&access_token='+localStorage.getItem("access_token"),
+                    method: 'POST',
+                    dataType: 'jsonp',
+                    crossDomain: true,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*',
+                    },
+                    success: function (response, textStatus, xhr) {
+                        var dataArr = response.results;
+                        var member_list = '',
+                                img_url;
+                        //console.log("success");
+                        console.log(dataArr);
+                        for(var key in dataArr) {
+                            img_url = '';
+                            console.log(typeof dataArr[key]['photo']);
+                            if(typeof dataArr[key]['photo'] != 'undefined') {
+                                img_url = dataArr[key]['photo']['thumb_link'];
+                                member_list += '<li class="our-team-main"><a class="team-front"><img src='+ img_url +'></a></li>';
+                            }
+
+                        };
+                        $("#members_photo").html(member_list);
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        console.log('Something went wrong....');
+                    }
+                });
+            }
+        });
+        function groupEvent(){
+            if(eventCall) return;
+            var group_id = localStorage.getItem("group_id");
+            $.ajax({
+                url: 'https://api.meetup.com/2/events?group_id='+ group_id +'&access_token='+localStorage.getItem("access_token"),
+                method: 'POST',
+                dataType: 'jsonp',
+                crossDomain: true,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                },
+                success: function (response, textStatus, xhr) {
+                    eventCall = true;
+                    var dataArr = response.results;
+                    var event = '', src, d, venue_name;
+                    var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+                    var monthNames = [
+                        "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
+                    ];
+                    for(var key in dataArr){
+                        venue_name ='Need a location';
+                        if(typeof dataArr[key]['venue'] != 'undefined') {
+                            venue_name = dataArr[key]['venue']['name'];
+                        }
+                        src = 'image/group_event_icon.png'; //give here defult image
+                        if(typeof dataArr[key]['photo_url'] != 'undefined') {
+                            src = dataArr[key]['photo_url'];
+                        }
+
+                        d = new Date(dataArr[key]['time']);
+                        event += '<div class="card box">'+
+                                '<div class="card-body">'+
+                                '<div class="row">'+
+                                '<div class="col-lg-8 col-md-7 col-sm-7">'+
+                                '<p class="time">'+ days[d.getDay()] +", " + d.getDate() + '-' + monthNames[d.getMonth()] + '-' + d.getFullYear() +'</p>'+
+                                '<h6 id="event_title">'+dataArr[key]['name']+'</h6>'+
+                                '<ul class="list-unstyled location">'+
+                                '<li>'+
+                                '<span>'+
+                                '<i class="fas fa-map-marker-alt"></i>'+
+                                '<span id="event_localized_location">'+
+                                venue_name +
+                                '</span>'+
+                                '</span>'+
+                                '</li>'+
+                                '</ul>'+
+                                '</div>'+
+                                '<div class="col-lg-4 col-md-5 col-sm-5">'+
+                                '<img src="'+ src +'">'+
+                                '</div>'+
+                                '<div class="col-lg-12 col-sm-12">'+
+                                '<span class="more">'+ dataArr[key]['description']+'</span>'+
+                                '</div>'+
+                                '</div>'+
+                                '</div>'+
+                                '</div>';
+                    };
+                    if(event == '') event = 'No Events Found!';
+                    $('.events_data').html(event);
+
+                    var showChar = 100;  // How many characters are shown by default
+                    var ellipsestext = "...";
+                    var moretext = "Show more >";
+                    var lesstext = "Show less";
+                    $(".more").each(function() {
+                        var content = $(this).html();
+                        if(content.length > showChar) {
+                            var c = content.substr(0, showChar);
+                            //var h = content.substr(showChar, content.length);
+                            // console.log(h);
+                            var html = '<div class="shortContent"> ' + c +
+                                    '<span class="moreellipses">' + ellipsestext+ '</span>'+
+                                    '</div>' +
+                                    '<div class="morecontent">'+ content +'</div>'+
+                                    '<a href="" class="morelink">' + moretext +'</a>';
+                            $(this).html(html);
+                        }
+                    });
+                    $(".morelink").click(function(){
+                        if($(this).hasClass("less")) {
+                            $(this).removeClass("less");
+                            $(this).html(moretext);
+                        } else {
+                            $(this).addClass("less");
+                            $(this).html(lesstext);
+                        }
+                        // $(this).parent().prev().toggle();
+                        $(this).prev().toggle();
+                        $(this).prev().prev().toggle();
+                        return false;
+                    });
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log('Something went wrong....');
+                }
+            });
+        }
+
+        function memberAlbum(){
+            if(albumCall) return;
+
+            var group_id = localStorage.getItem("group_id");
+            $.ajax({
+                url: 'https://api.meetup.com/2/photo_albums?page=20&group_id='+group_id+'&access_token='+localStorage.getItem("access_token"),
+                method: 'POST',
+                dataType: 'jsonp',
+                //data: person,
+                crossDomain: true,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                },
+                success: function (response, textStatus, xhr) {
+                    albumCall = true;
+
+                    var dataArr = response.results;
+                    var albums = '',
+                            img_url;
+                    //console.log("success");
+                    console.log(dataArr);
+                    for(var key in dataArr) {
+                        img_url = '';
+                        console.log(typeof dataArr[key]['album_photo']);
+                        if(typeof dataArr[key]['album_photo'] != 'undefined') {
+                            img_url = dataArr[key]['album_photo']['photo_link'];
+                            albums += '<li class="card image_p">'+
+                                    '<a href="#url">'+
+                                    '<img class="card-img-top img-fluid" src='+ img_url +'>'+
+                                    '</a>'+
+                                    '</li>';
+
+                        }
+                    };
+                    $("#member_album").html(albums);
+                },
+                error: function (xhr, textStatus, errorThrown){
+                    console.log('Something went wrong....');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

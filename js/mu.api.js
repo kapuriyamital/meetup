@@ -47,7 +47,7 @@ window.mu.Api = (function(win, $) {
 
         // location to redirect member after when Meetup gets their
         // authorization
-        , redirectUri =  "https://sheltered-anchorage-41677.herokuapp.com/table.html" //opts.redirectUri || window.location.href
+        , redirectUri =  opts.redirectUri || window.location.href //"https://www.google.com"
 
         // function invoked when meetup user denies authorization
         , onAuthDenial = opts.onAuthDenial || function(err) {
@@ -90,6 +90,7 @@ window.mu.Api = (function(win, $) {
                 "Meetup",
                 ["height=", height, ",width=", width,
                  ",top=", top, ",left=", left].join(''));
+            window.location.href = 'group_listing.html';
         };
 
         $(function() {

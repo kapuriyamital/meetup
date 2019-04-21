@@ -15,27 +15,34 @@
             <img src="image/logo.png" alt="" class="img-responsive">
         </div>
         <form class="example" action="/action_page.php">
-            <input type="text" id="myInput" onkeyup="searchFnc()" placeholder="Search.." name="search">
+            <input type="text"  placeholder="Search.." name="search">
             <button type="submit"><i class="fa fa-search"></i></button>
         </form>
         <ul class="menu_disable">
             <li><a href="#"><i class="fas fa-user-circle"></i> Login</a> </li>
         </ul>
     </header>
-    <div class="container-fluid table_title">
+   <!-- <div class="container-fluid table_title">
         <h2>GROUP LISTING TABLE</h2>
     </div>
+    -->
+
     <div class="container-fluid">
         <div class="table-responsive-md">
+            <input type="text" id="myInput" onkeyup="searchFnc()" placeholder="Search group..." title="Type in a name">
             <table class="table table-bordered" id="myTable" data-page-length='2'>
                 <thead>
                 <tr>
-                    <th>Firstname<span><i class="fas fa-sort" onclick="sortTable(0)"></i></span></th>
-                    <th>Lastname<span><i class="fas fa-sort" onclick="sortTable(1)"></i></span></th>
-                    <th>Photoes<span><i class="fas fa-sort" onclick="sortTable(2)"></i></span></th>
+                    <th style="width: 15%;">GROUP ICON</th>
+                    <th style="width: 30%;">NAME<span><i class="fas fa-sort" onclick="sortTable(1)"></i></span></th>
+                    <th style="width: 55%;">DESCRIPTION</th>
                 </tr>
                 </thead>
-                <tbody id="tbody"></tbody>
+                <tbody id="tbody">
+                <tr>
+                    <td colspan="3"><span class="loader"></span></td>
+                </tr>
+                </tbody>
             </table>
         </div>
     </div>
@@ -48,11 +55,11 @@
 <script>
     function sortTable(col) {
         var table, rows, switching, i, x, y, shouldSwitch;
-        table = document.getElementById("myTable");
+        group_listing = document.getElementById("myTable");
         switching = true;
         while (switching) {                                 //Make a loop that will continue until no switching has been done://
             switching = false;                               //start by saying: no switching is done:
-            rows = table.rows;
+            rows = group_listing.rows;
             for (i = 1; i < (rows.length - 1); i++) {       //Loop through all table rows (except the  first, which contains table headers):*/
                 shouldSwitch = false;                        //start by saying there should be no switching:
                 x = rows[i].getElementsByTagName("TD")[col];   //Get the two elements you want to compare,one from current row and one from the next:*/
@@ -72,10 +79,10 @@
         var input, filter, table, tr, td, i, txtValue;
         input = document.getElementById("myInput");
         filter = input.value.toUpperCase();
-        table = document.getElementById("myTable");
-        tr = table.getElementsByTagName("tr");
+        group_listing = document.getElementById("myTable");
+        tr = group_listing.getElementsByTagName("tr");
         for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[0];
+            td = tr[i].getElementsByTagName("td")[1];
             if (td) {
                 txtValue = td.textContent || td.innerText;
                 if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -89,7 +96,7 @@
 
     $(document).ready(function(){
        //var url = window.location.href;
-        var url = "https://sheltered-anchorage-41677.herokuapp.com/table.html#access_token=85977cecd6d7239e142282e8f630286f&token_type=bearer&expires_in=72576000&scope=ageless";
+        var url = "https://www.google.com#access_token=85977cecd6d7239e142282e8f630286f&token_type=bearer&expires_in=72576000&scope=ageless";
         var url_params = url.split("#");
         var url_params1 =  url_params[1].split("&");
         var access_token_param = url_params1[0].split("=");
@@ -102,7 +109,6 @@
             url: 'https://api.meetup.com/find/groups?access_token='+localStorage.getItem("access_token"),
             method: 'POST',
             dataType: 'jsonp',
-            //data: person,
             crossDomain: true,
             headers: {
               'Content-Type': 'application/json',
@@ -110,34 +116,65 @@
             },
             success: function (response, textStatus, xhr) {
                 console.log("success");
-                console.log(response.data);
+                //console.log(response);
                 var dataArr = response.data;
                 var tableRows = '';
+                var src, desc;
                 for(var key in dataArr) {
-
+                    src = 'image/Group-icon.png'; //give here defult image
+                    console.log(typeof dataArr[key]['key_photo']);
+                    if(typeof dataArr[key]['key_photo'] != 'undefined') {
+                        src = dataArr[key]['key_photo']['thumb_link'];
+                    }
                     tableRows += '<tr>'+
-                            '<td>'+dataArr[key]['name']+'</td>'+
-                            '<td>'+dataArr[key]['description']+'</td>'+
-                            '<td>'+dataArr[key]['key_photo']['thumb_link']+'</td>'+
-                            '</tr>';
+                                    '<td>'+
+                                        '<a style="color:black; text-decoration: none; cursor: pointer ;" target="_blank" href="group_details.html?'+dataArr[key]['name']+'"><img class="responsive img-thumbnail" src="'+src +'">'+
+                                    '</td>'+
+                                    '<td>'+
+                                        '<a style="color:black; text-decoration: none; cursor: pointer ;" target="_blank" href="group_details.html?'+dataArr[key]['name']+'">'+ dataArr[key]['name']+
+                                    '</td>'+
+                                    '<td>'+
+                                        '<span class="more">'+dataArr[key]['description']+'</span>'+
+                                    '</td>'+
+                                '</tr>';
                 };
-
-
                 $("#tbody").html(tableRows);
+
+                var showChar = 100;
+                var ellipsestext = "...";
+                var moretext = "Show more >";
+                var lesstext = "Show less";
+                $(".more").each(function() {
+                    var content = $(this).html();
+                    if(content.length > showChar) {
+                        var c = content.substr(0, showChar);
+                        //var h = content.substr(showChar, content.length);
+                       // console.log(h);
+                        var html = '<div class="shortContent"> ' + c + '<span class="moreellipses">' + ellipsestext+
+                                '&nbsp;</span></div><div class="morecontent">' + content +
+                                '</div><a href="" class="morelink">' + moretext +
+                                '</a>';
+                        $(this).html(html);
+                    }
+                });
+                $(".morelink").click(function(){
+                    if($(this).hasClass("less")) {
+                        $(this).removeClass("less");
+                        $(this).html(moretext);
+                    } else {
+                        $(this).addClass("less");
+                        $(this).html(lesstext);
+                    }
+                   // $(this).parent().prev().toggle();
+                    $(this).prev().toggle();
+                    $(this).prev().prev().toggle();
+                    return false;
+                });
             },
             error: function (xhr, textStatus, errorThrown) {
-                console.log('Error in Operation');
+                console.log('Something went wrong....');
             }
         });
-
-        var dataArr = [
-            {
-                "name": "asdsa",
-                "description": "SADASa",
-                "city": "sdadas@sdas.com"
-            }
-        ];
-
     });
 </script>
 </body>

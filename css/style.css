@@ -66,7 +66,7 @@ form.example::after {
 .login {
     height: auto;
     text-align: center;
-    padding: 8% 0 0 0;
+    padding: 6% 0 0 0;
     overflow: hidden;
     background-color: ghostwhite;
 }
@@ -124,7 +124,7 @@ form.example::after {
     outline: 0;
     width: 100%;
     border: 1px solid gainsboro;
-    margin: 0 0 10px;
+    margin: 0 0 3px;
     padding: 7px 10px;
     box-sizing: border-box;
     font-size: 14px;
@@ -151,8 +151,15 @@ form.example::after {
     background: #43A047;
 }
 .form label {
+    margin-top: 15px;
     float: left;
-    margin-bottom: 0px;
+    margin-bottom: 3px;
+}
+
+.error{
+    position: absolute;
+    color: #f34949;
+    font-size: 13px;
 }
 /*1st page close*/
 /* Group Listing page CSS*/
@@ -161,19 +168,34 @@ body{
 }
 .table_title h2{
     text-align: center;
-    padding: 50px 10px;
+    padding: 15px 6px;
 }
-tbody tr:nth-child(odd) {
+#myTable #tbody tr td:first-child img{
+    width: 100px;
+    height: 100px;
+}
+#myTable #tbody tr td:first-child{
+    text-align: center;
+}
+tbody tr:nth-child(even) {
     background-color: #f2f2f2
 }
+table thead tr{
+    background-color: #9b9b9e;
+}
 #myInput {
-    font-size: 16px;
-    border: 1px solid #ddd;
-    margin-bottom: 12px;
+     width: 30%;
+     font-size: 16px;
+     padding: 7px 18px;
+     border: 1px solid #ddd;
+     margin-bottom: 10px;
+     margin-top: 10px;
+     border-radius: 35px;
+     outline: 0;
 }
 #myTable thead tr th span{
     padding-left: 1vw;
-    color: #9a9090;
+    color: #dcd7d7;
 }
 #page_number{
     float: right;
@@ -184,6 +206,17 @@ tbody tr:nth-child(odd) {
 #page_number li:active{
     outline: 0;
 }
+@media (max-width: 1024px) and (min-width: 320px) {
+    #myTable #tbody tr td:first-child img{
+        width: 100px;
+        height: 60px;
+    }
+}
+@media screen and  (max-width: 767px){
+    #myInput {
+        width: 45%;
+    }
+}
 @media (max-width: 425px) and (min-width: 320px) {
     .table_title h2 {
         padding: 30px 10px;
@@ -192,11 +225,30 @@ tbody tr:nth-child(odd) {
     #myTable thead tr th span{
         margin-left: 10px;
     }
+    #myInput {
+        width: 100%;
+    }
+    .login-form {
+        padding:5px ;
+    }
+    .user{
+        margin-bottom: 10px;
+        margin-top: 20px;
+    }
+    .form h3 {
+        margin: 5px 0;
+    }
+    .userimg img {
+        margin-bottom: 8px;
+        width: 63%;
+    }
 }
 /* Group Listing page CSS closed*/
 /*3rd page open*/
 .item-photo img{
     width: 100%;
+    height: 100%;
+    max-height: 330px;
 }
 .icon{
     position: absolute;
@@ -214,14 +266,18 @@ tbody tr:nth-child(odd) {
     color: white;
 }
 .item-photo{
+    min-height: 350px!important;
     display:flex;
     justify-content:center;
     align-items:center;
     border-right:1px solid #f6f6f6;
-    padding: 50px 20px 30px 20px;
+    padding: 25px 20px 20px 20px;
 }
 .item_des{
     padding: 50px 20px 30px 20px;
+}
+.item_des ul li a:hover{
+    text-decoration: none;
 }
 .location{
     padding-left: 20px;
@@ -307,42 +363,61 @@ div.section > div > input {
     border-radius:2px;
 }
 .attr.active,.attr2.active{ border:1px solid orange;}
+.detail{
+    background-color: #f1f1f1;
+}
 
 #navbar {
     z-index: 11;
     overflow: hidden;
     border-bottom: 1px solid gray;
-    background-color: white;
+    background-color: #f1f1f1;
 }
-#navbar a {
-    float: left;
-    display: block;
+#navbar ul{
+    margin: 10px 0px;
+    line-height: 2.5;
+    border-bottom: none;
+}
+#navbar ul li a{
     color: black;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
 }
-#navbar a:hover {
+#navbar #navbar_right ul li a{
+    padding: 5px 10px;
+}
+#navbar #navbar_right ul li a{
+    color: white;
+}
+#navbar #navbar_right ul li a:hover{
+    color: white;
+}
+#navbar ul li a:hover {
     color: blue;
 }
 .content {
-    padding: 16px;
+    padding: 16px 0px;
 }
 .sticky {
     position: fixed;
     top: 0;
-    width: 98%;
+    width: 100%;
 }
 .sticky + .content {
-    padding-top: 100px;
+    padding-top: 70px;
 }
 .content .box{
     border: 1px solid #f1f1f1;
+    margin: 20px 0px;
+    border-radius: 50px 2px 50px 2px;
 }
 .content .title{
     padding: 5px 5px 5px 10px;
-    background-color: #f1f1f1;
+    background-color: #252222;
+    color: white;
+    text-align: center;
 }
 .image_p{
     width: 47%;
@@ -351,18 +426,12 @@ div.section > div > input {
     display: inline-block!important;
     margin-bottom: 2%;
 }
-/* right side bar*/
-h3 {
-    color:#fff;
-    margin:40px 0 60px 0;
-    font-weight:300;
+.image_p img{
+    height: 200px;
 }
-
-.our-team-main {
+/* right side bar*/
+.r_side .righisidebar ul .our-team-main {
     display: inline-block;
-    border-bottom: 5px solid #8e8d8d;
-    border-top: 5px solid #cac8c6;
-    background:#fff;
     text-align:center;
     border-radius:100%;
     overflow:hidden;
@@ -372,34 +441,70 @@ h3 {
     margin-right:10px;
     cursor:pointer
 }
-.content .righisidebar{
+.content .righisidebar {
     background-color: #f1f1f1;
-    padding: 30px 10px 10px 10px;
+    padding: 5px 0px;
     border-radius: 8px;
-    text-align: center;
 }
-.our-team-main img {
+.r_side .righisidebar ul .our-team-main img, .r_side .righisidebar .organizer .our-team-main img{
     border-radius: 50%;
-    margin-bottom: 10px;
     width: 50px;
+    height: 50px;
 }
-
-.team-front {
+.r_side .righisidebar ul li .team-front  {
     width:100%;
     height:auto;
     position:relative;
     z-index:10;
     background:#fff;
-    padding:8px;
     bottom:0px;
     transition: all 0.5s ease;
 }
-
+.r_side .righisidebar .organizer h5{
+    padding-bottom: 6px;
+}
+.r_side .righisidebar .organizer p{
+    margin-bottom: 2px;
+    text-align: left;
+}
+.r_side .righisidebar .organizer .our-team-main {
+    width: 50px;
+    display: block;
+    border-radius:100%;
+    overflow:hidden;
+    position:relative;
+    transition:0.5s;
+    margin-bottom: 12px;
+    margin-right:10px;
+    cursor:pointer;
+    margin: auto;
+}
+.r_side .righisidebar .member_profile .m_title{
+    padding-bottom: 10px;
+}
+.content .r_side .head{
+    border-bottom: 1px solid gainsboro;
+    padding: 2px 0px 10px 0px;
+}
+.l_side .time{
+    font-size: 11px;
+    font-weight: bold;
+    color: #5d9cde;
+}
+.l_side #event_tab .location #event_localized_location{
+    margin-left: 10px;
+}
+.l_side #event_tab img{
+    max-width: 150px;
+}
 /*our-team-main*/
-@media (max-width: 992px) and (min-width: 768px) {
-    .image_p {
-        width: 22%;
+@media (max-width: 1024px) and (min-width: 768px){
+    .image_p img {
+        height: 130px;
     }
+}
+@media (max-width: 759px) and (min-width: 768px) {
+
 }
 @media (max-width: 767px) and (min-width: 576px){
     .item_des h1{
@@ -408,27 +513,90 @@ h3 {
     .image_p {
         width: 30%;
     }
+    .image_p img {
+        height: 135px;
+    }
+}
+@media screen and (max-width: 767px) {
+    .content .righisidebar {
+        padding: 1px 12px 10px 10px;
+    }
+    .r_side .righisidebar h3 {
+        font-size: 18px;
+    }
+    .r_side .righisidebar .organizer h5 {
+        padding-bottom: 9px;
+    }
+    .r_side .righisidebar .member_profile {
+        padding-top: 0px;
+    }
+    .r_side .righisidebar .member_profile .m_title {
+        padding-bottom: 4px;
+    }
+    .r_side .righisidebar .member_profile ul{
+        margin-bottom: 1px;
+    }
 }
 @media (max-width: 575px) {
     .item_des h1{
         font-size: 22px;
     }
     .item-photo {
-        padding: 20px 20px 10px 20px;
+        padding: 20px 0px 0px 0px;
     }
     .item_des {
         padding: 10px 20px 50px 20px;
         border-bottom: 1px solid #f1f1f1;
     }
-    .righisidebar ul{
-        padding-top: 15px;
+    .item_des ul li{
+        font-size: 13px;
     }
     .content .r_side h3{
         padding: 5px 0px;
         font-size: 20px;
     }
-    .location ,.icon {
-        padding-left: 20px!important;
+    .fb_icon, .tw_icon, .google_icon {
+        width: 20px;
+        border-radius: 50%;
+    }
+    #navbar ul {
+        margin: 5px 0px;
+        line-height: 1;
+    }
+    #navbar_left{
+        width: 60%;
+    }
+    #navbar_right{
+        width: 40%;
+    }
+    #navbar_left ul li{
+        margin-right: 1%;
+    }
+    #navbar ul li a {
+        padding: 6px 7px;
+        font-size: 13px;
+    }
+    #navbar #navbar_right ul li a {
+        padding: 3px 5px;
+    }
+    .content p{
+        font-size: 13px;
+    }
+    .content #event_tab  .location{
+        font-size: 11px;
+    }
+    .r_side .righisidebar ul .our-team-main {
+        margin-bottom: 5px;
+        margin-right: 5px;
+    }
+    .image_p img {
+        height: 120px;
+    }
+    .sticky + .content {
+        padding-top: 48px;
+    }
+    .content {
+        padding: 0px 0px;
     }
 }
 @media (max-width: 375px) and (max-width: 320px) {
@@ -437,6 +605,9 @@ h3 {
     }
     .our-team-main img {
         width: 33px;
+    }
+    .image_p img {
+        height: 100px;
     }
 
 }
@@ -455,7 +626,18 @@ h3 {
 
     }
     .section{width:104%;}
-    .menu-items{padding-left:0;}
+    .menu-items{
+        padding-left:0;
+    }
+    .item-photo img {
+        max-height: 220px;
+    }
+    .item-photo {
+        min-height: 240px !important;
+    }
+    .item-photo .loader {
+        top: 100px!important;
+    }
 }
 
 
@@ -604,3 +786,44 @@ h3 {
 /*media quary closed header */
 
 /*media quary closed header */
+.morecontent {
+    display: none;
+}
+.morelink {
+    display: block;
+}
+.shortContent{
+    display: block;
+}
+/*loader*/
+.item-photo .loader{
+    top: 140px;
+    position: absolute;
+}
+#tbody .loader {
+    top: 0 !important;
+}
+.loader {
+    display: block;
+    top: 70px;
+    position: relative;
+    left: 45%;
+    border: 5px solid #d2caca;
+    border-radius: 50%;
+    border-top: 5px solid #667dd8;
+    width: 50px;
+    height: 50px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

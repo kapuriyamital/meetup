@@ -21,15 +21,18 @@
                     </div>
                     <form class="login-form" action="javascript:void(0)">
                         <label for="email"><b>Email</b></label>
-                        <input type="text" placeholder="Email" name="email" required/>
+                        <input type="text" placeholder="Email" name="email" id="uEmail" />
+                        <span id="uEmail_Error" class="error"></span>
 
                         <label for="psw"><b>Password</b></label>
-                        <input type="password" placeholder="Enter Password" name="psw" required>
+                        <input type="password" placeholder="Enter Password" name="psw" id="uPassword" />
+                        <span id="uPassword_Error" class="error"></span>
+
 
                         <label>
-                            <input type="checkbox" checked="checked" name="remember"> Remember me
+                            <input type="checkbox" name="remember"> Remember me
                         </label>
-                        <button type="submit" id="connect">Login</button>
+                        <button type="submit" onclick ="checkLogin()">Login</button>
                     </form>
                 </div>
             </div>
@@ -65,24 +68,42 @@
                         "Hey " + member.name.link(member.link) + " | <a href='#' id='disconnect'>Logout</a>");
             }
         });
+        function checkLogin(){
+            var uemail = $('#uEmail').val();
+            var psw = $('#uPassword').val();
 
-        (function($){
-            $(function() {
-                $("#connect").on('click', function(e) {
-                    e.preventDefault();
-                    api.login();
-                    return false;
+            var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+            // Email Validation
+            $('#uEmail_Error').html('');
+            $('#uPassword_Error').html('');
+            if(!uemail.match(mailformat)) { // Email Validation
+                $('#uEmail').focus();
+                $('#uEmail_Error').html("Please enter correct email!");
+                return false;
+            } else if (psw.length < 6 || psw.length > 20) { // Password Validation
+                $('#uPassword').focus();
+                $('#uPassword_Error').html("Password must be between 6 to 20 characters");
+                return false
+            } else {
+                connect();
+            }
+        }
+
+        function connect (){
+            api.login();
+            return false;
+        }
+        $(function() {
+            $("#disconnect").on('click', function(e) {
+                e.preventDefault();
+                api.logout(function(){
+                    $("#disconnect").hide(); $("#connect").show();
+                    window.location.reload();
                 });
-                $("#disconnect").on('click', function(e) {
-                    e.preventDefault();
-                    api.logout(function(){
-                        $("#disconnect").hide(); $("#connect").show();
-                        window.location.reload();
-                    });
-                    return false;
-                });
+                return false;
             });
-        })(jQuery);
+        });
     </script>
 
 </body>
