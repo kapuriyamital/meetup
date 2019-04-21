@@ -6,6 +6,7 @@ Step 3. Enter an email-id, password and click on login button, a popup will open
 Step 4. In group_listing.html, Loader is visible up to all group data loaded. Click on any "Group Icon" or "Name" to get details of it.
 Step 5. In group_details.html, click on tab "Event" to get Events, Click on tab "Photo" to get album photos.
 
+
 NOTE:
 - In this project, I used Static "AccessToken" value.
 - Validation is done for login
